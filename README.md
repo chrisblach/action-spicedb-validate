@@ -16,14 +16,20 @@ A compatible file can be produced by downloading from the [Authzed Playground].
 
 ## Usage
 
-Add the following any workflow:
+Add the following to any workflow:
 
 ```yaml
 steps:
+- uses: "actions/checkout@v4"
 - uses: "authzed/action-spicedb-validate@v1"
   with:
     validationfile: "myschema.zaml"
 ```
+
+> **Note:** The `actions/checkout` step is required before running this action.
+> Without it, your repository files won't be available and validation will fail with "no such file or directory".
+
+The `validationfile` path should be relative to the repository root.
 
 See [test-schema.zaml] for an example of an input file.
 
