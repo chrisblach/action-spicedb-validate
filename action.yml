@@ -9,6 +9,10 @@ inputs:
   fail-on-warn:
     description: "whether validation warnings should cause the validation to fail"
     required: false
+  zed-version:
+    description: "requested zed version value (defaults to latest)"
+    required: false
+    default: "latest"
 runs:
   using: "docker"
   image: "Dockerfile"

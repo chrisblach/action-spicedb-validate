@@ -24,12 +24,17 @@ steps:
 - uses: "authzed/action-spicedb-validate@v1"
   with:
     validationfile: "myschema.zaml"
+    zed-version: "latest" # optional, defaults to latest
 ```
 
 > **Note:** The `actions/checkout` step is required before running this action.
 > Without it, your repository files won't be available and validation will fail with "no such file or directory".
 
 The `validationfile` path should be relative to the repository root.
+
+The `zed` CLI is copied into the image at **build time** from [`quay.io/authzed/zed`](https://quay.io/repository/authzed/zed). The tag is controlled by `ARG ZED_VERSION` in `Dockerfile` (default `latest`). To pin a version when building this action image yourself, run `docker build --build-arg ZED_VERSION=v0.27.0 .` (use a tag that exists for that registry image).
+
+The `zed-version` action input sets `ZED_VERSION` at runtime and defaults to `latest` when omitted.
 
 See [test-schema.zaml] for an example of an input file.
 

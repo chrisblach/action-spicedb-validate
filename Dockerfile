@@ -1,7 +1,8 @@
-FROM quay.io/authzed/zed:latest as base
+ARG ZED_VERSION=latest
+FROM quay.io/authzed/zed:${ZED_VERSION} AS zed
 
 FROM ubuntu:22.04
-COPY --from=base /usr/local/bin/zed /zed
+COPY --from=zed /usr/local/bin/zed /zed
 RUN chmod +x /zed
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
