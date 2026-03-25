@@ -1,4 +1,4 @@
-FROM quay.io/authzed/zed:0.34.0 as base
+FROM quay.io/authzed/zed:v0.34.0 as base
 
 FROM ubuntu:22.04
 COPY --from=base /usr/local/bin/zed /zed
